@@ -108,8 +108,8 @@ int main() {
 				map[(pacman_y  + 16)/ 40][(pacman_x  + 16)/ 40] = 2;
 
 			}
-			if (int wallCollide = 1)
-				pacman
+			if (int wallCollide = 1){}
+			///	pacman
 
 
 			redraw = true;
