@@ -1,9 +1,10 @@
 #include <allegro5/allegro.h>
-#include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_primitives.h> 
 const int RIGHT = 1;
 const int LEFT = 2;
 const int UP = 3;
 const int DOWN = 4;
+
 int wallCollide(int x, int y, int dir, int map[20][21]);
 
 int main() {
@@ -108,10 +109,10 @@ int main() {
 				map[(pacman_y  + 16)/ 40][(pacman_x  + 16)/ 40] = 2;
 
 			}
-			if (int wallCollide = 1){}
-			///	pacman
-
-
+			if (int wallCollide = 1) {
+				
+			}
+			
 			redraw = true;
 		}
 		///////////////////////////////////////////////////////////////////////////////////////////////////////
