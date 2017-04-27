@@ -39,6 +39,7 @@ int main() {
 	ALLEGRO_BITMAP*wall = NULL;
 	ALLEGRO_BITMAP*dot = NULL;
 	ALLEGRO_SAMPLE*bite = NULL;
+	ALLEGRO_SAMPLE*background = NULL;
 	ALLEGRO_SAMPLE_INSTANCE*instance = NULL;
 	ALLEGRO_EVENT_QUEUE*event_queue = NULL;
 	ALLEGRO_TIMER*timer = NULL;
@@ -80,6 +81,11 @@ int main() {
 	timer = al_create_timer(.02);
 	event_queue = al_create_event_queue();
 	bite = al_load_sample("chomp.wav");
+	background = al_load_sample("Pacman.wav");
+	instance = al_create_sample_instance(background);
+	al_set_sample_instance_playmode(instance, ALLEGRO_PLAYMODE_LOOP);
+	al_attach_sample_instance_to_mixer(instance, al_get_default_mixer());
+	al_play_sample_instance(instance);
 	display = al_create_display(800, 840);
 	pacman = al_create_bitmap(32, 32);
 	wall = al_create_bitmap(40, 40);
@@ -326,17 +332,17 @@ int wallCollide(int x, int y, int dir, int map[21][20]) {
 }
 
 void initGhost(int x, int y, int w, int h) {
-	Xpos = x;
-	Ypos = y;
-	width = w;
-	height = h;
-	IsDead = false;
+	int Xpos = x;
+	int Ypos = y;
+	int width = w;
+	int height = h;
+
 }
 void drawGhost() {
 
 }
 bool IsDead() {
-
+	return false;
 }
 void printInfo() {
 
@@ -345,11 +351,11 @@ void killGhost(){
 
 }
 bool Collision(int b1x, int b1y, int b2x, int b2y) {
-
+	return false;
 }
 void Chase() {
 
 }
 bool getPacman(int x, int y) {
-
+	return false;
 }
