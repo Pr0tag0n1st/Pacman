@@ -11,9 +11,8 @@ const int LEFT = 1;
 const int UP = 2;
 const int RIGHT = 3;
 const int DOWN = 4;
-int lives = 3;
-int pacman_x = 384;
-int pacman_y = 364;
+
+
 ALLEGRO_DISPLAY*display = NULL;
 ALLEGRO_BITMAP*pacman = NULL;
 ALLEGRO_BITMAP*wall = NULL;
@@ -59,8 +58,9 @@ private:
 
 int main() {
 
-
-
+	int pacman_x = 384;
+	int pacman_y = 364;
+	int lives = 3;
 	bool doexit = false;
 	bool key[4]{ false, false, false, false };
 	bool redraw = true;
@@ -209,74 +209,58 @@ int main() {
 			gengar.chase3(pacman_x, pacman_y, map);
 			golurk.chase4(pacman_x, pacman_y, map);
 
-			if (chandelure.getPacman(pacman_x, pacman_y, 32, 32) == 1) {
+			if (chandelure.getPacman(32, 32, pacman_x, pacman_y) == 1) {
 
 				cout << "You died!" << endl;
 				al_draw_text(font, al_map_rgb(255, 100, 100), 400, 420, 0, "YOU DIED!");
-				al_rest(3);
-				lives = lives--;
 				pacman_x = 384;
 				pacman_y = 364;
-				Ghost chandelure;
 				chandelure.initGhost(324, 164, 32, 32);
-				Ghost dusknoir;
 				dusknoir.initGhost(364, 164, 32, 32);
-				Ghost gengar;
 				gengar.initGhost(404, 164, 32, 32);
-				Ghost golurk;
 				golurk.initGhost(444, 164, 32, 32);
+				lives--;
+				
 			}
 
-			if (dusknoir.getPacman(pacman_x, pacman_y, 32, 32) == 1) {
+			if (dusknoir.getPacman(32, 32, pacman_x, pacman_y) == 1) {
 
 				cout << "You died!" << endl;
 				al_draw_text(font, al_map_rgb(255, 100, 100), 400, 420, 0, "YOU DIED!");
-				al_rest(3);
-				lives = lives--;
 				pacman_x = 384;
 				pacman_y = 364;
-				Ghost chandelure;
 				chandelure.initGhost(324, 164, 32, 32);
-				Ghost dusknoir;
 				dusknoir.initGhost(364, 164, 32, 32);
-				Ghost gengar;
 				gengar.initGhost(404, 164, 32, 32);
-				Ghost golurk;
 				golurk.initGhost(444, 164, 32, 32);
+				lives--;
 			}
-			if (gengar.getPacman(pacman_x, pacman_y, 32, 32) == 1) {
+			
+			
+			if (gengar.getPacman(32, 32, pacman_x, pacman_y) == 1) {
 
 				cout << "You died!" << endl;
 				al_draw_text(font, al_map_rgb(255, 100, 100), 400, 420, 0, "YOU DIED!");
-				al_rest(3);
-				lives = lives--;
+			
 				pacman_x = 384;
 				pacman_y = 364;
-				Ghost chandelure;
 				chandelure.initGhost(324, 164, 32, 32);
-				Ghost dusknoir;
 				dusknoir.initGhost(364, 164, 32, 32);
-				Ghost gengar;
 				gengar.initGhost(404, 164, 32, 32);
-				Ghost golurk;
 				golurk.initGhost(444, 164, 32, 32);
+				lives--;
 			}
-			if (golurk.getPacman(pacman_x, pacman_y, 32, 32) == 1) {
+			if (golurk.getPacman(32, 32, pacman_x, pacman_y) == 1) {
 
 				cout << "You died!" << endl;
 				al_draw_text(font, al_map_rgb(255, 100, 100), 400, 420, 0, "YOU DIED!");
-				al_rest(3);
-				lives = lives--;
 				pacman_x = 384;
 				pacman_y = 364;
-				Ghost chandelure;
 				chandelure.initGhost(324, 164, 32, 32);
-				Ghost dusknoir;
 				dusknoir.initGhost(364, 164, 32, 32);
-				Ghost gengar;
 				gengar.initGhost(404, 164, 32, 32);
-				Ghost golurk;
 				golurk.initGhost(444, 164, 32, 32);
+				lives = lives--;
 			}
 			redraw = true;
 		}
@@ -372,7 +356,6 @@ int main() {
 //			cout << dotseaten << endl;
 		}
 	}
-
 	if (lives == 0) {
 		al_clear_to_color(al_map_rgb(0, 0, 0));
 		al_draw_textf(font, al_map_rgb(255, 100, 100), 400, 420, 0, "You have lost.");
