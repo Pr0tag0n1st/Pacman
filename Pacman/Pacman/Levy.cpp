@@ -57,13 +57,21 @@ private:
 };
 
 int main() {
-
+	bool done = false;
 	int pacman_x = 384;
 	int pacman_y = 364;
 	int lives = 3;
 	bool doexit = false;
 	bool key[4]{ false, false, false, false };
 	bool redraw = true;
+	int sprite_x = pacman_x;
+	int sprite_y = pacman_y;
+	const int maxFrame = 4;
+	int curframe = 0;
+	int frameCount = 4;
+	int framedelay = 5;
+	int frameWidth = 32;
+	int frameHeight = 32;
 	al_init();
 	al_init_primitives_addon();
 	al_install_audio();
@@ -116,7 +124,9 @@ int main() {
 	al_set_target_bitmap(al_get_backbuffer(display));
 	al_register_event_source(event_queue, al_get_display_event_source(display));
 	al_register_event_source(event_queue, al_get_timer_event_source(timer));
-
+	al_register_event_source(event_queue, al_get_keyboard_event_source());
+	
+	
 	Ghost chandelure;
 	chandelure.initGhost(324, 164, 32, 32);
 	Ghost dusknoir;
@@ -128,7 +138,7 @@ int main() {
 
 
 	//tell the event queue that it should take keyboard events, too 
-	al_register_event_source(event_queue, al_get_keyboard_event_source());
+	
 
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 
@@ -175,7 +185,7 @@ int main() {
 			if (map[(pacman_y + 16) / 40][(pacman_x + 16) / 40] == 0) {
 				map[(pacman_y + 16) / 40][(pacman_x + 16) / 40] = 2;
 				bite = al_load_sample("chomp.wav");
-				al_play_sample(bite, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+				al_play_sample(bite, 0.5, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 				dotseaten++;
 			}
 
@@ -219,6 +229,7 @@ int main() {
 				dusknoir.initGhost(364, 164, 32, 32);
 				gengar.initGhost(404, 164, 32, 32);
 				golurk.initGhost(444, 164, 32, 32);
+
 				lives--;
 				
 			}
@@ -233,6 +244,7 @@ int main() {
 				dusknoir.initGhost(364, 164, 32, 32);
 				gengar.initGhost(404, 164, 32, 32);
 				golurk.initGhost(444, 164, 32, 32);
+
 				lives--;
 			}
 			
@@ -248,6 +260,7 @@ int main() {
 				dusknoir.initGhost(364, 164, 32, 32);
 				gengar.initGhost(404, 164, 32, 32);
 				golurk.initGhost(444, 164, 32, 32);
+
 				lives--;
 			}
 			if (golurk.getPacman(32, 32, pacman_x, pacman_y) == 1) {
@@ -260,6 +273,7 @@ int main() {
 				dusknoir.initGhost(364, 164, 32, 32);
 				gengar.initGhost(404, 164, 32, 32);
 				golurk.initGhost(444, 164, 32, 32);
+
 				lives = lives--;
 			}
 			redraw = true;
