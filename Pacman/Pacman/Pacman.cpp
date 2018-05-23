@@ -5,6 +5,7 @@
 #include <allegro5/allegro_acodec.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_font.h>
+#include <allegro5/allegro_image.h>
 #include<iostream>
 
 using namespace std;
@@ -29,6 +30,7 @@ ALLEGRO_EVENT_QUEUE*event_queue = NULL;
 ALLEGRO_TIMER*timer = NULL;
 ALLEGRO_FONT*font = NULL;
 int dotseaten =0;
+ALLEGRO_BITMAP*dino = NULL;
 
 //Collision function
 int wallCollide(int x, int y, int dir, int map[21][20]);
@@ -88,6 +90,7 @@ int main() {
 	al_init_primitives_addon();
 	al_install_audio();
 	al_init_acodec_addon();
+	al_init_image_addon();
 	al_reserve_samples(5);
 
 	//Matrix (map)
@@ -131,6 +134,7 @@ int main() {
 	pacman = al_create_bitmap(32, 32);
 	wall = al_create_bitmap(40, 40);
 	dot = al_create_bitmap(4, 4);
+	dino = al_load_bitmap("DinoStudios.jpg");
 	al_set_target_bitmap(pacman);
 	al_clear_to_color(al_map_rgb(255, 255, 0));
 	al_set_target_bitmap(wall);
@@ -155,9 +159,10 @@ int main() {
 
 	
 
-	al_clear_to_color(al_map_rgb(0, 0, 0));
-
+	al_draw_bitmap(dino, 0, 0, 0);
 	al_flip_display();
+	al_rest(1.5);
+	al_clear_to_color(al_map_rgb(0, 0, 0));
 
 	al_start_timer(timer);
 
